@@ -1,56 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel Sangree Jewar | Luxury & Comfort</title>
+    <title>Hotel Sangree Jewar - Booking</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; color: #333; line-height: 1.6; }
-        header { background: #2c3e50; color: white; padding: 20px; text-align: center; }
-        .hero { background: #f4f4f4; padding: 50px 20px; text-align: center; border-bottom: 2px solid #eee; }
-        .container { width: 90%; max-width: 1000px; margin: auto; }
-        .amenities { display: flex; justify-content: space-around; flex-wrap: wrap; margin: 20px 0; }
-        .feature { background: #fff; border: 1px solid #ddd; padding: 15px; border-radius: 8px; width: 150px; text-align: center; margin: 10px; }
-        .booking-card { background: #fff; border: 2px solid #2c3e50; padding: 25px; border-radius: 10px; text-align: center; margin: 30px 0; }
-        .btn-whatsapp { background: #25D366; color: white; padding: 15px 30px; text-decoration: none; font-size: 1.2rem; font-weight: bold; border-radius: 50px; display: inline-block; transition: 0.3s; }
-        .btn-whatsapp:hover { background: #128C7E; transform: scale(1.05); }
-        footer { background: #2c3e50; color: white; text-align: center; padding: 10px; margin-top: 20px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; }
+        .booking-form { background: white; max-width: 500px; margin: auto; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        h2 { color: #2c3e50; text-align: center; margin-bottom: 25px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+        input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; font-size: 16px; }
+        .btn-submit { background-color: #25D366; color: white; border: none; width: 100%; padding: 15px; border-radius: 8px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+        .btn-submit:hover { background-color: #128C7E; }
+        .amenities-tag { font-size: 12px; color: #7f8c8d; text-align: center; margin-top: 10px; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Hotel Sangree Jewar</h1>
-    <p>Comfort and Convenience in the heart of Jewar</p>
-</header>
-
-<div class="container">
-    <section class="hero">
-        <h2>Welcome to Your Home Away from Home</h2>
-        <p>Hamare paas <strong>18 Well-Furnished Rooms</strong> hain jo aapki trip ko yaadgaar banayenge.</p>
-    </section>
-
-    <h3 style="text-align:center;">Our Amenities</h3>
-    <div class="amenities">
-        <div class="feature">❄️ AC</div>
-        <div class="feature">📶 Free Wi-Fi</div>
-        <div class="feature">📺 LED TV</div>
-        <div class="feature">🚿 Geyser</div>
+<div class="booking-form">
+    <h2>Hotel Sangree Jewar</h2>
+    <p style="text-align: center; color: #666;">Booking Details Bharein</p>
+    
+    <div class="form-group">
+        <label>Aapka Naam (Name)</label>
+        <input type="text" id="name" placeholder="Apna naam likhein">
     </div>
 
-    <div class="booking-card">
-        <h3>Fast & Easy Booking</h3>
-        <p>Room availability check karne ya booking ke liye neeche button par click karein.</p>
-        <a href="https://wa.me/919457255575?text=Hi%20Hotel%20Sangree%20Jewar,%20mujhe%20room%20booking%20ki%20inquiry%20karni%20hai." 
-           class="btn-whatsapp" target="_blank">
-            🟢 Book Now via WhatsApp
-        </a>
+    <div class="form-group">
+        <label>Kitne Log Hain? (Persons)</label>
+        <input type="number" id="persons" placeholder="Total guests" min="1">
+    </div>
+
+    <div class="form-group">
+        <label>Check-in Date</label>
+        <input type="date" id="checkin">
+    </div>
+
+    <div class="form-group">
+        <label>Check-out Date</label>
+        <input type="date" id="checkout">
+    </div>
+
+    <div class="form-group">
+        <label>Room Category (Price Option)</label>
+        <select id="priceOption">
+            <option value="Standard AC (₹1500)">Standard AC - ₹1500</option>
+            <option value="Deluxe AC (₹2000)">Deluxe AC - ₹2000</option>
+            <option value="Family Suite (₹3000)">Family Suite - ₹3000</option>
+        </select>
+    </div>
+
+    <button class="btn-submit" onclick="sendToWhatsApp()">Book Now via WhatsApp 🟢</button>
+
+    <div class="amenities-tag">
+        AC • WiFi • LED TV • Geyser
     </div>
 </div>
 
-<footer>
-    <p>Address: Jewar, Uttar Pradesh | Contact: +91 9457255575</p>
-</footer>
+<script>
+    function sendToWhatsApp() {
+        // Form ki values nikalna
+        const name = document.getElementById('name').value;
+        const persons = document.getElementById('persons').value;
+        const checkin = document.getElementById('checkin').value;
+        const checkout = document.getElementById('checkout').value;
+        const price = document.getElementById('priceOption').value;
+
+        // Validation: Agar koi field khali hai
+        if(!name || !persons || !checkin || !checkout) {
+            alert("Kripya saari details bharein!");
+            return;
+        }
+
+        // WhatsApp message format karna
+        const phoneNumber = "919457255575"; // Aapka number
+        const message = "Nayi Booking Request! %0A%0A" + 
+                        "*Name:* " + name + "%0A" + 
+                        "*Persons:* " + persons + "%0A" + 
+                        "*Check-in:* " + checkin + "%0A" + 
+                        "*Check-out:* " + checkout + "%0A" + 
+                        "*Plan:* " + price;
+
+        // WhatsApp open karna
+        const url = "https://wa.me/" + phoneNumber + "?text=" + message;
+        window.open(url, '_blank');
+    }
+</script>
 
 </body>
 </html>
